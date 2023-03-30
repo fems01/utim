@@ -22,7 +22,7 @@ public class SMSUtils {
 	public static void sendMessage(String signName, String templateCode,String phoneNumbers,String param) throws ClientException {
 		final String product = "Dysmsapi";// 短信API产品名称（短信产品名固定，无需修改）
 		final String domain = "dysmsapi.aliyuncs.com";// 短信API产品域名（接口地址固定，无需修改）
-		DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI5tEcNjPwQyXf6QGn1N3e", "VhEnfF8qirtnLX4f9I6o9T1JD4RQmj");
+		DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "***", "***");
 
 		DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
 		IAcsClient client = new DefaultAcsClient(profile);
