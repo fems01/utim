@@ -1,5 +1,6 @@
 package com.jmu.utim;
 
+import com.jmu.utim.common.BaseContext;
 import com.jmu.utim.entity.Role;
 import com.jmu.utim.mapper.RoleMapper;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ class UtimApplicationTests {
 
     @Test
     void testRoleAdd() {
+        BaseContext.setCurrentId(1L);
         Role role = new Role();
         role.setRoleName("13");
         role.setOpenStatus(1);
