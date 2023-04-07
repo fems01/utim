@@ -22,8 +22,6 @@ public class DeviceController {
     @GetMapping("/1")
     public R<List<Device>> getAll(){
         List<Device> list = deviceService.list();
-
         return R.success(list);
-
     }
 }
