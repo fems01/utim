@@ -30,7 +30,7 @@ public class ShiroConfig {
     @Bean
     public DefaultShiroFilterChainDefinition shiroFilterChainDefinition() {
         DefaultShiroFilterChainDefinition definition =  new DefaultShiroFilterChainDefinition();
-        definition.addPathDefinition("/**","authc");//必须验证身份访问
+        //definition.addPathDefinition("/**","authc");//必须验证身份访问
         definition.addPathDefinition("/users/**","anon");//允许匿名访问
         return definition;
     }

@@ -66,20 +66,24 @@ public class UserController {
     }
 
 */
-    @GetMapping
+    @PostMapping
     @ResponseBody
-    public String userLogin(String username,String password){
+    public R<String> userLogin(@RequestBody User user){
         Subject subject = SecurityUtils.getSubject();
+
+        String username = user.getUsername();
+        String password = user.getPassword();
+        System.out.println(user);
         AuthenticationToken token = new UsernamePasswordToken(username,password);
 
         try {
             subject.login(token);
             System.out.println(token);
-            return "ok";
+            return R.success("ok");
         } catch (AuthenticationException e) {
             e.printStackTrace();
             System.out.println("error");
-            return "no ok";
+            return R.success("no");
         }
     }
 
