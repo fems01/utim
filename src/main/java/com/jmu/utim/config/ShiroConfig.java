@@ -18,6 +18,10 @@ public class ShiroConfig {
     public DefaultWebSecurityManager defaultWebSecurityManager() {
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
         HashedCredentialsMatcher matcher = new HashedCredentialsMatcher();
+
+        matcher.setHashAlgorithmName("md5");
+        matcher.setHashIterations(3);
+
         myRealm.setCredentialsMatcher(matcher);
         defaultWebSecurityManager.setRealm(myRealm);
         return defaultWebSecurityManager;
@@ -26,8 +30,8 @@ public class ShiroConfig {
     @Bean
     public DefaultShiroFilterChainDefinition shiroFilterChainDefinition() {
         DefaultShiroFilterChainDefinition definition =  new DefaultShiroFilterChainDefinition();
-        definition.addPathDefinition("/**","authc");
-
+        definition.addPathDefinition("/**","authc");//必须验证身份访问
+        definition.addPathDefinition("/users/**","anon");//允许匿名访问
         return definition;
     }
 }

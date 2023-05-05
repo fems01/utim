@@ -7,6 +7,7 @@ import com.jmu.utim.entity.User;
 import com.jmu.utim.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -37,6 +38,7 @@ public class UserController {
     
 
 
+/*
 
     @PostMapping
     public R<String> login(@RequestBody Map map){
@@ -61,6 +63,24 @@ public class UserController {
             return R.success("success");
         }
         return R.error("error");
+    }
+
+*/
+    @GetMapping
+    @ResponseBody
+    public String userLogin(String username,String password){
+        Subject subject = SecurityUtils.getSubject();
+        AuthenticationToken token = new UsernamePasswordToken(username,password);
+
+        try {
+            subject.login(token);
+            System.out.println(token);
+            return "ok";
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+            System.out.println("error");
+            return "no ok";
+        }
     }
 
 
