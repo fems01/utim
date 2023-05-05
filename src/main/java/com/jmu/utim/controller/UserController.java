@@ -6,6 +6,10 @@ import com.jmu.utim.common.R;
 import com.jmu.utim.entity.User;
 import com.jmu.utim.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -30,12 +34,19 @@ public class UserController {
     }
 
 
+    
+
+
 
     @PostMapping
     public R<String> login(@RequestBody Map map){
         String username = map.get("username").toString();
 
         String password = map.get("password").toString();
+
+        Subject subject = SecurityUtils.getSubject();
+
+        AuthenticationToken token = new UsernamePasswordToken(username,password);
 
         LambdaQueryWrapper<User>  queryWrapper = new LambdaQueryWrapper<>();
 

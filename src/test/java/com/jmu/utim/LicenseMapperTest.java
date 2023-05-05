@@ -12,7 +12,6 @@ public class LicenseMapperTest {
     @Autowired
     private LicenseMapper licenseMapper;
 
-
     @Test
     void testGetById() {
         License license = licenseMapper.selectById(1L);
