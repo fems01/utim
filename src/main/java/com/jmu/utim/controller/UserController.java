@@ -33,13 +33,7 @@ public class UserController {
     public R<String> sendMessage(){
         return R.error("短信发送失败");
     }
-
-
-    
-
-
-/*
-
+    /*
     @PostMapping
     public R<String> login(@RequestBody Map map){
         String username = map.get("username").toString();
@@ -66,16 +60,24 @@ public class UserController {
     }
 
 */
-    @PostMapping
+    @GetMapping("/1")
+    public R<String> login(){
+        Subject subject = SecurityUtils.getSubject();
+        AuthenticationToken token = new UsernamePasswordToken("张三","z3");
+        subject.login(token);
+        return R.success("ok");
+    }
+
+    @PostMapping("/login")
     @ResponseBody
-    public R<String> userLogin(@RequestBody User user){
+    public R<String> userLogin(@RequestBody User user,@RequestParam(defaultValue = "false") boolean rememberMe){
         Subject subject = SecurityUtils.getSubject();
 
         String username = user.getUsername();
         String password = user.getPassword();
         System.out.println(user);
-        AuthenticationToken token = new UsernamePasswordToken(username,password);
-
+        System.out.println(rememberMe);
+        AuthenticationToken token = new UsernamePasswordToken(username,password,rememberMe);
         try {
             subject.login(token);
             System.out.println(token);

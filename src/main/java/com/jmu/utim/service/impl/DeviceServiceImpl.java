@@ -8,4 +8,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> implements DeviceService {
+
 }
