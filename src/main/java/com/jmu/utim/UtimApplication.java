@@ -8,6 +8,10 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 @Slf4j
 @SpringBootApplication
 @ServletComponentScan
@@ -15,7 +19,23 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableCaching //添加缓存启动注解
 public class UtimApplication {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         SpringApplication.run(UtimApplication.class, args);
     }
 }
+
+/*
+*
+* lic
+* id ---
+* l1
+*
+* lic-role
+* lic_id role_id --
+* lic_id role_id --
+* l1  r1
+* l1  r2
+* l2  r2
+* l2  r3
+*
+* */

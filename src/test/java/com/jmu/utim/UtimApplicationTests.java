@@ -7,6 +7,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.Socket;
+import java.util.Scanner;
+
 @SpringBootTest
 class UtimApplicationTests {
 
@@ -31,7 +36,32 @@ class UtimApplicationTests {
 
     @Test
     void testRoleDelete() {
-        int i = roleMapper.deleteById(1L);
-        System.out.println(i);
+        try
+        {
+            Socket s = new Socket("192.168.2.142", 10096);
+            try
+            {
+                InputStream inStream = s.getInputStream();
+                Scanner in = new Scanner(inStream);
+
+                while (in.hasNextLine())
+                {
+                    String line = in.nextLine();
+                    System.out.println(line);
+                }
+            }
+            finally
+            {
+                s.close();
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
+
+
+
+
 }

@@ -5,6 +5,7 @@
   height: 100%;
   background-color: #333;
 }
+
 .login-box {
   width: 1000px;
   height: 474.38px;
@@ -22,6 +23,9 @@
   text-align: center;
   color: #707070;
 }
+
+
+
 .login-form {
   background: #ffffff;
   width: 40%;

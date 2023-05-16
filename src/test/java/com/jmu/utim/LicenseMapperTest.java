@@ -21,7 +21,7 @@ public class LicenseMapperTest {
     @Test
     void testAdd() {
         License license = new License();
-        license.setName("删除");
+        license.setLicName("删除");
         license.setDescription("删除角色");
         licenseMapper.insert(license);
     }
