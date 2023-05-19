@@ -35,8 +35,6 @@ public class UserController {
     }
 
 
-    
-
 
 /*
 
@@ -86,7 +84,5 @@ public class UserController {
             return R.success("no");
         }
     }
-
-
 
 }
