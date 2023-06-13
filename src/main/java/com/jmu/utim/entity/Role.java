@@ -2,20 +2,22 @@ package com.jmu.utim.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.models.auth.In;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
-@TableName("tbl_role")
+@NoArgsConstructor
 public class Role {
     private Long id;
 
     private String roleName;
 
-    @TableField("role_desc")
     private String description;
+
+    private Integer openStatus;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
@@ -28,11 +30,6 @@ public class Role {
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
-
-    private Integer openStatus;
-
-    public Role() {
-    }
 
     public Role(Long id, String roleName, String description) {
         this.id = id;

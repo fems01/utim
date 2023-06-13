@@ -4,42 +4,48 @@ package com.jmu.utim.controller;
 import com.jmu.utim.common.R;
 import com.jmu.utim.entity.Device;
 import com.jmu.utim.service.DeviceService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/devices")
 public class DeviceController {
+
     @Autowired
     private DeviceService deviceService;
 
+    @RequiresPermissions("device:select")
     @GetMapping
     public R<List<Device>> getAll(){
         List<Device> list = deviceService.list();
         return R.success(list);
     }
 
+    @RequiresPermissions("device:select:id")
     @GetMapping("/{id}")
     public R<Device> getById(@PathVariable Long id) {
         Device ret = deviceService.getById(id);
         return R.success(ret);
     }
 
+    @RequiresPermissions("device:add")
     @PostMapping
     public R<String> save(@RequestBody Device dev) {
         deviceService.save(dev);
         return R.success("添加成功！！！");
     }
-
+    @RequiresPermissions("device:update")
     @PutMapping
     public R<String> update(@RequestBody Device dev) {
         deviceService.updateById(dev);
         return R.success("更新成功");
     }
 
+    @RequiresPermissions("device:delete")
     @DeleteMapping("/{id}")
     public R<String> deleteById(@PathVariable Long id) {
         deviceService.removeById(id);
@@ -58,7 +64,7 @@ public class DeviceController {
     @PutMapping("/status/{status}")
     public R<String> noShutdown(@RequestBody List<Long> ids, @PathVariable Integer status) {
         Device dev = new Device();
-        dev.setDevStatus(status);
+        dev.setStatus(status);
         for(Long id : ids) {
             dev.setId(id);
             deviceService.updateById(dev);

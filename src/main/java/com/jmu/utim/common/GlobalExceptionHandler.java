@@ -1,6 +1,8 @@
 package com.jmu.utim.common;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.authz.UnauthenticatedException;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -41,5 +43,19 @@ public class GlobalExceptionHandler {
     public R<String> exceptionHandler(CustomException ex){
         log.error(ex.getMessage());
         return R.error(ex.getMessage());
+    }
+
+    @ExceptionHandler(UnauthenticatedException.class)
+    public R<String> exceptionHandler(UnauthenticatedException ex) {
+        log.error(ex.getMessage());
+//        return R.error(ex.getMessage());
+        return R.success("请先登录");
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public R<String> exceptionHandler(UnauthorizedException ex) {
+        log.error(ex.getMessage());
+//        return R.error(ex.getMessage());
+        return R.success("无权访问");
     }
 }

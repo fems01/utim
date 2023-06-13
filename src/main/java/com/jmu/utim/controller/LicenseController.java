@@ -3,6 +3,8 @@ package com.jmu.utim.controller;
 import com.jmu.utim.common.R;
 import com.jmu.utim.entity.License;
 import com.jmu.utim.service.LicenseService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +14,11 @@ import java.util.List;
 /**
  * @author lrui1 and fems01
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/licenses")
+@RequiresRoles("role_superman")
+@RequiresPermissions("lic")
 public class LicenseController {
     @Autowired
     private LicenseService licenseService;
