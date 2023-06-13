@@ -26,4 +26,4 @@ mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
 
 shiro:
-  loginUrl: /users
+  loginUrl: /toLogin
